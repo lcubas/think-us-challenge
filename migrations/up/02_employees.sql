@@ -8,7 +8,7 @@ END$$;
 
 -- Tabla tabla employees
 CREATE TABLE IF NOT EXISTS employees (
-  id              UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id              UUID PRIMARY KEY,
   first_name      VARCHAR(100) NOT NULL,
   last_name       VARCHAR(100) NOT NULL,
   document_number VARCHAR(100) NOT NULL,
