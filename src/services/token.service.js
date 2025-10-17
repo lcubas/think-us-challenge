@@ -27,7 +27,7 @@ class TokenService {
     try {
       return jwt.verify(token, this.env.JWT_SECRET);
     } catch (error) {
-      throw UnauthorizedError('Invalid or expired access token');
+      throw new UnauthorizedError('Invalid or expired access token');
     }
   }
 
@@ -35,7 +35,7 @@ class TokenService {
     try {
       return jwt.verify(token, this.env.JWT_REFRESH_SECRET);
     } catch (error) {
-      throw UnauthorizedError('Invalid or expired access token');
+      throw new UnauthorizedError('Invalid or expired access token');
     }
   }
 

@@ -4,6 +4,7 @@ const TokenService = require('./token.service');
 const { getEnv } = require('../config/env');
 const { UnauthorizedError, ConflictError } = require('../utils/errors');
 const logger = require('../config/logger');
+const { verifyPassword } = require('../utils/verifyPassword');
 
 class AuthService {
   constructor() {
@@ -34,9 +35,9 @@ class AuthService {
     const refreshToken = TokenService.generateRefreshToken(user.id);
 
     return {
-      user: { id: user.id, email: user.email, role: user.role },
       accessToken,
       refreshToken,
+      user: { id: user.id, email: user.email, role: user.role },
     };
   }
 
@@ -47,19 +48,13 @@ class AuthService {
       throw new UnauthorizedError('Invalid credentials');
     }
 
+    console.log(user);
+
     // Verify password
-    const isPasswordValid = await user.verifyPassword(password);
+    const isPasswordValid = await verifyPassword(password, user.password);
     if (!isPasswordValid) {
       throw new UnauthorizedError('Invalid credentials');
     }
-
-    // Check if active
-    if (!user.isActive) {
-      throw new UnauthorizedError('User account is inactive');
-    }
-
-    // Update last login
-    await UserRepository.updateLastLogin(user.id);
 
     logger.info(`User logged in: ${email}`);
 
@@ -68,29 +63,23 @@ class AuthService {
     const refreshToken = TokenService.generateRefreshToken(user.id);
 
     return {
-      user: { id: user.id, email: user.email, role: user.role },
       accessToken,
       refreshToken,
+      user: { id: user.id, email: user.email, role: user.role },
     };
   }
 
   async refreshAccessToken(refreshToken) {
-    try {
-      const payload = TokenService.verifyRefreshToken(refreshToken);
-      const user = await UserRepository.findById(payload.userId);
+    const payload = TokenService.verifyRefreshToken(refreshToken);
+    const user = await UserRepository.findById(payload.userId);
 
-      if (!user || !user.isActive) {
-        throw new UnauthorizedError('User not found or inactive');
-      }
-
-      const newAccessToken = TokenService.generateAccessToken(user.id, user.role);
-
-      return {
-        accessToken: newAccessToken,
-      };
-    } catch (error) {
-      throw new UnauthorizedError('Invalid refresh token');
+    if (!user) {
+      throw new UnauthorizedError('User not found or inactive');
     }
+
+    const accessToken = TokenService.generateAccessToken(user.id, user.role);
+
+    return { accessToken }; 
   }
 }
 
