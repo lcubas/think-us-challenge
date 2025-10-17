@@ -6,7 +6,7 @@ BEGIN
   END IF;
 END$$;
 
--- Crear tabla principal
+-- Crear tabla users
 CREATE TABLE IF NOT EXISTS users (
   id UUID PRIMARY KEY,
   email VARCHAR(255) NOT NULL UNIQUE,

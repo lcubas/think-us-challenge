@@ -19,7 +19,7 @@ async function runMigrations(direction = 'up') {
     const filePath = path.join(migrationsDir, file);
     const sql = fs.readFileSync(filePath, 'utf8');
 
-    console.log(`⚙️ Migracion: ${direction}: ${file}`);
+    console.log(`⚙️ Migracion ${direction}: ${file}`);
     try {
       await sequelize.query(sql);
       console.log(`✅ ${file} ejecutado correctamente`);
