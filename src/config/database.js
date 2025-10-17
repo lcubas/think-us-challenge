@@ -22,6 +22,7 @@ const sequelize = new Sequelize(
     retry: {
       max: 3,
     },
+    sync: false,
   },
 );
 
@@ -29,11 +30,6 @@ const checkConnection = async () => {
   try {
     await sequelize.authenticate();
     logger.info('✅ Database connected');
-    
-    if (env.NODE_ENV !== 'production') {
-      await sequelize.sync({ alter: env.NODE_ENV === 'development' });
-      logger.info('✅ Database synced');
-    }
   } catch (error) {
     logger.error('❌ Database connection failed:', error.message);
     process.exit(1);
