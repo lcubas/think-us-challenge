@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const { sequelize } = require('../../config/database');
+const { sequelize } = require('../config/database');
 
 const UserRoles = Object.freeze({
   EMPLOYEE: 'employee',
@@ -24,19 +24,11 @@ const User = sequelize.define(
     password: {
       type: DataTypes.STRING(255),
       allowNull: false,
-      set(value) {
-        // Hash is applied in service, not in model
-        this.setDataValue('password', value);
-      },
     },
     role: {
       type: DataTypes.ENUM(UserRoles.EMPLOYEE, UserRoles.ADMIN),
       allowNull: false,
       defaultValue: 'employee',
-    },
-    isActive: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true,
     },
   },
   {

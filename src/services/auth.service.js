@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
-const UserRepository = require('../repositories/UserRepository');
-const TokenService = require('./TokenService');
+const UserRepository = require('../repositories/user.repository');
+const TokenService = require('./token.service');
 const { getEnv } = require('../config/env');
 const { UnauthorizedError, ConflictError } = require('../utils/errors');
 const logger = require('../config/logger');

@@ -1,8 +1,8 @@
-const { asyncHandler } = require('../middleware/errorHandler');
-const AuthService = require('../services/AuthService');
+const AuthService = require('../services/auth.service');
+const { asyncHandlerMiddleware } = require('../middlewares/asyncHandler.middleware');
 
 class AuthController {
-  register = asyncHandler(async (req, res) => {
+  register = asyncHandlerMiddleware(async (req, res) => {
     const { email, password } = req.body;
 
     const result = await AuthService.register(email, password);
@@ -13,7 +13,7 @@ class AuthController {
     });
   });
 
-  login = asyncHandler(async (req, res) => {
+  login = asyncHandlerMiddleware(async (req, res) => {
     const { email, password } = req.body;
 
     const result = await AuthService.login(email, password);
@@ -24,7 +24,7 @@ class AuthController {
     });
   });
 
-  refresh = asyncHandler(async (req, res) => {
+  refresh = asyncHandlerMiddleware(async (req, res) => {
     const { refreshToken } = req.body;
 
     if (!refreshToken) {
@@ -42,7 +42,7 @@ class AuthController {
     });
   });
 
-  validate = asyncHandler(async (req, res) => {
+  validate = asyncHandlerMiddleware(async (req, res) => {
     const token = req.headers.authorization?.substring(7);
 
     if (!token) {
