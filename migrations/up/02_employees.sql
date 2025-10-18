@@ -8,15 +8,15 @@ END$$;
 
 -- Tabla tabla employees
 CREATE TABLE IF NOT EXISTS employees (
-  id              UUID PRIMARY KEY,
-  first_name      VARCHAR(100) NOT NULL,
-  last_name       VARCHAR(100) NOT NULL,
-  document_number VARCHAR(100) NOT NULL,
-  document_type   enum_employees_document_type NOT NULL DEFAULT 'dni',
-  salary          NUMERIC(12,2),
-  is_active       BOOLEAN NOT NULL DEFAULT TRUE,
-  hired_at        TIMESTAMPTZ,
-  created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  updated_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  deleted_at      TIMESTAMPTZ
+  "id"             UUID PRIMARY KEY,
+  "firstName"      VARCHAR(100) NOT NULL,
+  "lastName"       VARCHAR(100) NOT NULL,
+  "documentNumber" VARCHAR(100) NOT NULL,
+  "documentType"   enum_employees_document_type NOT NULL DEFAULT 'dni',
+  "salary"         NUMERIC(12,2),
+  "isActive"       BOOLEAN NOT NULL DEFAULT TRUE,
+  "hiredAt"        TIMESTAMPTZ,
+  "createdAt"      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  "updatedAt"      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  "deletedAt"      TIMESTAMPTZ
 );

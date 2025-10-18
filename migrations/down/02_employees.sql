@@ -1,5 +1,5 @@
 -- Elimina tabla
-DROP TABLE IF EXISTS employees;
+DROP TABLE IF EXISTS employees CASCADE;
 
 -- Elimina tipo ENUM
 DO $$

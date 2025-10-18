@@ -1,2 +1,2 @@
 -- Eliminar tabla requests
-DROP TABLE IF EXISTS requests;
+DROP TABLE IF EXISTS requests CASCADE;
