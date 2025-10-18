@@ -1,38 +1,5 @@
 # Think Us Challenge API - Backend
 
-## Table of Contents
-
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Running the Application](#running-the-application)
-- [API Documentation](#api-documentation)
-- [Testing](#testing)
-- [Docker Deployment](#docker-deployment)
-- [Security Measures](#security-measures)
-- [Architecture Decisions](#architecture-decisions)
-- [Verification Checklist](#verification-checklist)
-
-## Features
-
-✅ **Authentication & Authorization**
-- User registration and login with JWT tokens
-- Role-based access control (Employee, Admin)
-- Access token + Refresh token pattern
-- Secure password hashing with bcrypt
-- Token validation middleware
-
-✅ **Security**
-- SQL Injection prevention via Sequelize ORM
-- XSS protection through input sanitization
-- Rate limiting on authentication endpoints
-- CORS with configurable origin
-- Helmet for HTTP headers security
-- Environment variable validation
-- Password strength requirements
-
 ## Tech Stack
 
 - **Runtime**: Node.js 18+
@@ -58,8 +25,8 @@
 
 1. **Clone the repository**
 ```bash
-git clone <repo-url>
-cd hr-backend
+git clone https://github.com/lcubas/think-us-challenge-api
+cd think-us-challenge-api
 ```
 
 2. **Install dependencies**
@@ -164,3 +131,11 @@ npm run test:coverage
 ### Test Structure
 
 - **Unit Tests**: `/tests/unit/` - Service and utility function tests
+
+
+## References
+
+- [Express](https://expressjs.com/)
+- [Zod](https://zod.dev)
+- [Jest](https://jestjs.io/)
+
