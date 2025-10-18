@@ -62,10 +62,6 @@ class EmployeeRepository {
     return employee.update(updates);
   }
 
-  async softDelete(id) {
-    return this.update(id, { isActive: false });
-  }
-
   async delete(id) {
     return Employee.destroy({ where: { id } });
   }

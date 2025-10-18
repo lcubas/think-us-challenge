@@ -30,7 +30,6 @@ const Request = sequelize.define(
   {
     tableName: 'requests',
     timestamps: true,
-    underscored: true,
     paranoid: true,
   },
 );
